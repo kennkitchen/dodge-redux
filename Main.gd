@@ -5,9 +5,12 @@ var score
 
 func _ready():
 	randomize()
-	new_game()
+	#new_game()
 
 func game_over():
+	$Music.stop()
+	$DeathSound.play()
+	
 	$HUD.show_game_over()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
@@ -22,6 +25,8 @@ func new_game():
 
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	
+	$Music.play()
 
 func _on_MobTimer_timeout():
 	# Create a new instance of the Mob scene.
